@@ -15,5 +15,22 @@
     "preview": {},
     "last_modified": "2021-12-06T21:38:05-03:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2021-12-06-anlise-da-base-rais/",
+    "title": "AnÃ¡lise da base RAIS",
+    "description": "Esta análise é sobre os salários na base RAIS. Projeto realizado na Semana Data Science na Prática da Curso-R",
+    "author": [
+      {
+        "name": "Vinicius Branco",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-12-06",
+    "categories": [],
+    "contents": "\r\nEsse é o meu primeiro projeto no portfólio.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-12-06T21:57:53-03:00",
+    "input_file": "anlise-da-base-rais.knit.md"
   }
 ]
