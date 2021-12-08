@@ -32,7 +32,7 @@ library(dplyr)
 ```
 Abaixo está o código que carrega as primeiras 5 (cinco) linhas da tabela microdados.
 
-```{r}
+```{r echo=TRUE}
 # Lendo uma tabela por um SGDB
 
 conexao <- dbConnect(
@@ -46,6 +46,5 @@ primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"
 primeiras_cinco_linhas
 
 ```
-
 
 
