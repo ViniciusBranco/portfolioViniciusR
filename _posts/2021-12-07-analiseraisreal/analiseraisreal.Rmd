@@ -1,0 +1,51 @@
+---
+title: "analise_rais_real"
+description: |
+  A short description of the post.
+author:
+  - name: Vinicius Branco
+    url: https://example.com/norajones
+date: 2021-12-07
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Nesse relatório, estamos interessados em responder à pergunta: 
+
+Quanto ganha um cientista de dados?
+
+Para isso, vamos utilizar a base da RAIS anonimizada.
+
+# Acessando os dados da RAIS
+
+Vamos utilizar o [DataLake da iniciativa Base dos Dados](https://basedosdados.org/dataset/br-me-rais). 
+
+```{r include=FALSE}
+library(bigrquery)
+library(dplyr)
+```
+Abaixo está o código que carrega as primeiras 5 (cinco) linhas da tabela microdados.
+
+```{r}
+# Lendo uma tabela por um SGDB
+
+conexao <- dbConnect(
+  bigquery(),
+  project = "basedosdados",
+  dataset = "br_me_rais",
+  billing = "semanacursor"
+)
+
+primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"), everything()), 5))
+primeiras_cinco_linhas
+
+```
+
+
+
