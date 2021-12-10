@@ -3,6 +3,7 @@ title: "Portfolio Vinicius R"
 description: |
   Portfolio Vinicius R
 output_dir: "docs"
+theme: tema_que_fiz_na_live.css
 navbar:
   right:
     - text: "Home"
