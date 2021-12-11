@@ -119,12 +119,13 @@ tabela_medias <- tabela_microdados_vinculos %>%
 # group_by + summarise: agrupa por atributo e sumariza a base
 # arrange: ordena a base
 
-```{r}
+```{r, fig.cap="Comparacao dos salarios medios da base ao longo do tempo."}
 
 ggplot(tabela_medias) + # inclui frame do plot
   aes(x = ano, y = media_salario) + # mapeando dos aspectos da base
   geom_col() + # o aspecto geometrico: no caso, histograma: um grafico de colunas. o geom_bar faz contagem dos dados
-  scale_x_continuous(breaks = 2013:2019) # cria um vetor e modifica a escala do eixo x
+  scale_x_continuous(breaks = 2013:2019) + # cria um vetor e modifica a escala do eixo x
+  labs(x="Ano", y="Salário Médio (R$)")
 ```
 
 - Quanto o valor médio varia no tempo?
@@ -138,7 +139,12 @@ tabela_medias %>%
 tabela_media_uf <- tabela_microdados_vinculos %>% group_by(sigla_uf) %>% summarise( media = mean(valor_remuneracao_media) )
 ```
 ```{r}
-tabela_media_uf %>% mutate( sigla_uf = fct_reorder(sigla_uf, media) ) %>% ggplot(aes(x = sigla_uf, y = media)) + geom_col()
+tabela_media_uf %>% 
+  mutate( sigla_uf = fct_reorder(sigla_uf, media) ) %>% 
+  ggplot(aes(x = sigla_uf, y = media)) + 
+  geom_col() + 
+  labs(x='Sigla (UF)', y='Média Salarial') +
+  theme_bw()
 ```
 
 ## Quanto o valor médio varia por característica das pessoas?
@@ -194,15 +200,47 @@ tabela_resumo_raca_cor_sexo %>%
 ```
 
 ```{r}
-ggplot(tabela_resumo_raca_cor_sexo) + 
-  aes(x = raca_cor, y = media, fill = sexo) + 
-  geom_col(position = 'dodge') + theme_classic() + 
+ggplot(tabela_resumo_raca_cor_sexo, 
+       aes(x = raca_cor, y = media, fill = sexo)) + 
+  geom_col(position = 'dodge') + theme_bw() + 
+  scale_fill_viridis_d() +
   labs( x = "Etnia", y = "Média Salarial R$")
+
+```
+
+
+```{r}
+
+lm(valor_remuneracao_media ~ sexo+raca_cor, data = tabela_microdados_vinculos)
+
 ```
 
 
 
+```{r}
 
+tabela_microdados_vinculos %>% 
+  filter(valor_remuneracao_media > 0, cbo_2002 == '252525') %>% 
+  ggplot(aes(x=log(valor_remuneracao_media))) +
+  geom_histogram()+
+  facet_wrap(~cbo_2002, scales= 'free')
+
+nosso_modelo = tabela_microdados_vinculos %>% 
+  filter(
+    cbo_2002 == '252525', valor_remuneracao_media > 0, grau_instrucao_apos_2005 != '1'
+  ) %>% 
+  mutate(
+    log_remuneracao_media = log(valor_remuneracao_media)
+  ) %>%  
+  lm( log_remuneracao_media ~ idade +  
+        sexo+raca_cor +
+        indicador_portador_deficiencia +
+        tamanho_estabelecimento, data = .
+  )
+
+summary(nosso_modelo)
+
+```
 
 
 

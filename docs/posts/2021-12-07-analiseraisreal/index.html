@@ -2951,7 +2951,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1 id="group_by-summarise-agrupa-por-atributo-e-sumariza-a-base">group_by + summarise: agrupa por atributo e sumariza a base</h1>
 <h1 id="arrange-ordena-a-base">arrange: ordena a base</h1>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="analiseraisreal_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="analiseraisreal_files/figure-html5/unnamed-chunk-6-1.png" alt="Comparacao dos salarios medios da base ao longo do tempo." width="624" />
+<p class="caption">
+Figure 1: Comparacao dos salarios medios da base ao longo do tempo.
+</p>
+</div>
 </div>
 <ul>
 <li>Quanto o valor médio varia no tempo?
@@ -3604,7 +3609,18 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="analiseraisreal_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = valor_remuneracao_media ~ sexo + raca_cor, data = tabela_microdados_vinculos)
+
+Coefficients:
+(Intercept)        sexo2    raca_cor2    raca_cor4    raca_cor6  
+    3663.20     -1550.29      1561.60       251.46      3945.40  
+  raca_cor8    raca_cor9  
+      30.69      2740.90  </code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
